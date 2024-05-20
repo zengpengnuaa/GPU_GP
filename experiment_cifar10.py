@@ -61,7 +61,7 @@ elitismProb = 0.01
 totalRuns = 1
 initialMinDepth = 2
 initialMaxDepth = 6
-maxDepth = 8
+maxDepth = 10
 height, width = x_train[1, :, :].shape
 
 # XSGP tree structure, function set and terminal set

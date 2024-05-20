@@ -185,7 +185,7 @@ def cudafunc(imgs, ret_vectors):
         feature_vec[9] = l9
         return feature_vec
 
-    innerfunc = lambda ARG0: concat(add(ARG0, 15, 29, 11, 4), mean(maxP(ARG0, 2, 4)), mul(ARG0, 20, 26, 7, 4), num_sub(add(ARG0, 26, 22, 20, 7), add(ARG0, 12, 6, 16, 14)), div(ARG0, 16, 3, 26, 23), neg(div(ARG0, 31, 10, 26, 24)), num_add(mean(ARG0), std(ARG0)), mean(regions(ARG0, 9, 10, 31)), mean(ARG0), std(ARG0))
+    innerfunc = lambda ARG0: concat(neg(add(ARG0, 19, 5, 42, 20)), std(relu(maxP(ARG0, 2, 4))), std(relu(maxP(conv(ARG0, gen_filter(5, 'sobel_u')), 4, 4))), mean(ARG0), neg(mean(ARG0)), div(ARG0, 23, 46, 20, 14), neg(std(maxP(ARG0, 2, 2))), mean(maxP(ARG0, 2, 4)), std(maxP(conv(ARG0, gen_filter(3, 'prewitt_r')), 2, 4)), mean(ARG0))
     feature_vec = innerfunc(imgs[x])
     for i in range(10):
         ret_vectors[x][i] = feature_vec[i]

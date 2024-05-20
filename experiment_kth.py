@@ -113,7 +113,7 @@ toolbox.decorate("mutate", gp.staticLimit(key=operator.attrgetter("height"), max
 
 
 def GPmain(randomSeed):
-    random.seed(randomSeed)
+    # random.seed(randomSeed)
     pop = toolbox.population(population)
     hof = tools.HallOfFame(10)
     log = tools.Logbook()
@@ -134,7 +134,7 @@ def GPmain(randomSeed):
 if __name__ == "__main__":
     lock = multiprocessing.Manager().Lock()
     toolbox.register("evaluate", fitness_func, lock=lock)
-    num_processes = 16
+    num_processes = 4
     pool = multiprocessing.Pool(processes=num_processes, initializer=init, initargs=(lock,))
     toolbox.register("map", pool.map)
     print('Conducting calculation with {} cpu workers'.format(num_processes))

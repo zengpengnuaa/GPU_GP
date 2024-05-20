@@ -1,6 +1,7 @@
 import random
 from deap import tools
 import matplotlib.pyplot as plt
+from tqdm import tqdm
 
 
 def varAnd(population, toolbox, cxpb, mutpb):
@@ -42,9 +43,10 @@ def eaSimple(randomseed, population, toolbox, cxpb, mutpb, elitpb, ngen,
     print('Innitial population fitnesses evaluate finished, Best is {}'.format(record['fitness']['max']))
     logbook.record(gen=0, popsize=len(population), **record)
     if verbose:
+        print(logbook.stream + '\n')
         fd.write(logbook.stream + '\n')
 
-    for gen in range(1, ngen + 1):
+    for gen in tqdm(range(1, ngen + 1), desc='training generation:'):
         elitismNum = int(elitpb * len(population))
         population_for_eli = [toolbox.clone(ind) for ind in population]
         offspringE = toolbox.selectElitism(population_for_eli, k=elitismNum)
@@ -77,6 +79,7 @@ def eaSimple(randomseed, population, toolbox, cxpb, mutpb, elitpb, ngen,
         print('{}th population fitnesses evaluate finished, Best is {}'.format(gen, record['fitness']['max']))
         logbook.record(gen=gen, popsize=len(offspring), **record)
         if verbose:
+            print(logbook.stream + '\n')
             fd.write(logbook.stream + '\n')
 
     fd.close()
